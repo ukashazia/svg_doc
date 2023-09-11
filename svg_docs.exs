@@ -1,5 +1,5 @@
 defmodule SvgDocs do
-  @doc_path "./docs/svg_docs.html"
+  @doc_path "./doc/svg_docs.html"
 
   def generate() do
     {:ok, content} = File.read("./assets/static/images/icons.svg")
@@ -10,7 +10,7 @@ defmodule SvgDocs do
       |> Floki.children()
       |> Floki.raw_html(pretty: true)
 
-    if File.dir?("./docs/") === false, do: File.mkdir!("./docs")
+    if File.dir?("./doc/") === false, do: File.mkdir!("./doc")
     File.touch(@doc_path)
     File.write!(@doc_path, html(content))
 
